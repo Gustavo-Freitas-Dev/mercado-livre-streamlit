@@ -8,11 +8,13 @@ produto = st.text_input("Digite o nome do produto para buscar:", "")
 if st.button("🔍 Buscar"):
     with st.spinner("Buscando produtos..."):
         resultados = raspagem(produto)
+        resultados = sorted(resultados, key=lambda x:x ["Preço númerico"])
+        
         if resultados:
             for idx, item in enumerate(resultados, start=1):
                 st.markdown(f"**{idx}. {item['Título']}**")
                 st.write(f"💲 {item['Preço']}")
                 st.markdown(f"[🔗 Acessar link]({item['Link']})")
-                st.markdown("---")
+                st.markdown("----")
         else:
-            st.error("Nenhum resultado encontrado.")
+            st.error("Nenhum resultado encontrado")        
